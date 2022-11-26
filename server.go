@@ -3,6 +3,6 @@ package main
 import "fmt"
 
 func main() {
-	//Todo implement server
+	// Todo implement server
 	fmt.Println("This is server")
 }

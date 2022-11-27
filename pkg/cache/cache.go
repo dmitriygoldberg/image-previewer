@@ -1,25 +1,23 @@
 package cache
 
-type Key string
-
 type Cache interface {
-	Set(key Key, value interface{}) bool
-	Get(key Key) (interface{}, bool)
+	Set(key string, value interface{}) bool
+	Get(key string) (interface{}, bool)
 	Clear()
 }
 
 type lruCache struct {
 	capacity int
 	queue    List
-	items    map[Key]*ListItem
+	items    map[string]*ListItem
 }
 
 type cacheItem struct {
-	key   Key
+	key   string
 	value interface{}
 }
 
-func (cache *lruCache) Set(key Key, value interface{}) bool {
+func (cache *lruCache) Set(key string, value interface{}) bool {
 	newCacheItem := &cacheItem{key, value}
 
 	if queueItem, ok := cache.items[newCacheItem.key]; ok {
@@ -41,7 +39,7 @@ func (cache *lruCache) Set(key Key, value interface{}) bool {
 	return false
 }
 
-func (cache *lruCache) Get(key Key) (interface{}, bool) {
+func (cache *lruCache) Get(key string) (interface{}, bool) {
 	if queueItem, ok := cache.items[key]; ok {
 		cache.queue.MoveToFront(queueItem)
 
@@ -53,13 +51,13 @@ func (cache *lruCache) Get(key Key) (interface{}, bool) {
 
 func (cache *lruCache) Clear() {
 	cache.queue = NewList()
-	cache.items = make(map[Key]*ListItem, cache.capacity)
+	cache.items = make(map[string]*ListItem, cache.capacity)
 }
 
 func NewCache(capacity int) Cache {
 	return &lruCache{
 		capacity: capacity,
 		queue:    NewList(),
-		items:    make(map[Key]*ListItem, capacity),
+		items:    make(map[string]*ListItem, capacity),
 	}
 }

@@ -17,14 +17,14 @@ func main() {
 	logger := log.With().Str("sha_commit", shaCommit).Logger()
 
 	initEnv(logger)
-	conf := config.New()
+	appConfig := config.New()
 
-	handler := internal.Handler{Logger: logger}
+	handler := internal.Handler{Logger: logger, AppConfig: *appConfig}
 	server := &http.Server{
-		Addr:         conf.Server.Address,
-		WriteTimeout: conf.Server.WriteTimeout,
-		ReadTimeout:  conf.Server.ReadTimeout,
-		IdleTimeout:  conf.Server.IdleTimeout,
+		Addr:         appConfig.Server.Address,
+		WriteTimeout: appConfig.Server.WriteTimeout,
+		ReadTimeout:  appConfig.Server.ReadTimeout,
+		IdleTimeout:  appConfig.Server.IdleTimeout,
 		Handler:      handler.GetRouter(),
 	}
 

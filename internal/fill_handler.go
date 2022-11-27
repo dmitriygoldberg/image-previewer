@@ -3,8 +3,9 @@ package internal
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/rs/zerolog"
 	"net/http"
+
+	"github.com/rs/zerolog"
 )
 
 type fillHandler struct {

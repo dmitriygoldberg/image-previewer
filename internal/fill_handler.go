@@ -23,7 +23,7 @@ func (fh *fillHandler) Process(response http.ResponseWriter, request *http.Reque
 	if err != nil {
 		response.WriteHeader(http.StatusBadRequest)
 		response.Write([]byte("Request validation error"))
-		fh.logger.Err(err).Msg("Handler processing error")
+		fh.logger.Err(err).Msg(err.Error())
 		return
 	}
 
@@ -31,7 +31,7 @@ func (fh *fillHandler) Process(response http.ResponseWriter, request *http.Reque
 	if err != nil {
 		response.WriteHeader(http.StatusBadGateway)
 		response.Write([]byte("Unable to process image"))
-		fh.logger.Err(err).Msg("Handler processing error")
+		fh.logger.Err(err).Msg(err.Error())
 		return
 	}
 
@@ -44,7 +44,7 @@ func (fh *fillHandler) Process(response http.ResponseWriter, request *http.Reque
 	response.Header().Set("Content-Length", strconv.Itoa(len(fillResponse.Img)))
 	if _, err := response.Write(fillResponse.Img); err != nil {
 		response.WriteHeader(http.StatusInternalServerError)
-		fh.logger.Err(err).Msg("Handler processing error")
+		fh.logger.Err(err).Msg(err.Error())
 		return
 	}
 }

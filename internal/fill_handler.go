@@ -15,7 +15,7 @@ import (
 
 type fillHandler struct {
 	logger    zerolog.Logger
-	previewer *previewer.Previewer
+	previewer previewer.PreviewInterface
 }
 
 func (fh *fillHandler) Process(response http.ResponseWriter, request *http.Request) {

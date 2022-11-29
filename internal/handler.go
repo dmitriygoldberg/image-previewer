@@ -25,7 +25,7 @@ func (handler *Handler) fillHandler() *fillHandler {
 	downloadedCache := cache.NewCache(handler.AppConfig.Cache.Capacity)
 
 	downloader := previewer.NewDownloader()
-	previewerService := previewer.NewPreviewer(handler.Logger, *downloader, resizedCache, downloadedCache)
+	previewerService := previewer.NewPreviewer(handler.Logger, downloader, resizedCache, downloadedCache)
 
 	return &fillHandler{logger: handler.Logger, previewer: previewerService}
 }

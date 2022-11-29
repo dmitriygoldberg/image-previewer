@@ -19,6 +19,10 @@ type cache interface {
 	Clear()
 }
 
+type PreviewInterface interface {
+	Fill(params *FillParams) (*FillResponse, error)
+}
+
 type Image struct {
 	Img     []byte
 	Headers map[string][]string
@@ -26,7 +30,7 @@ type Image struct {
 
 type Previewer struct {
 	logger          zerolog.Logger
-	downloader      Downloader
+	downloader      ImageDownloader
 	resizedCache    cache
 	downloadedCache cache
 }
@@ -81,7 +85,7 @@ func (p Previewer) Fill(params *FillParams) (*FillResponse, error) {
 
 func NewPreviewer(
 	logger zerolog.Logger,
-	downloader Downloader,
+	downloader ImageDownloader,
 	resizedCache cache,
 	downloadedCache cache,
 ) *Previewer {

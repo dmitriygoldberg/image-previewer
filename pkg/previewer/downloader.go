@@ -9,6 +9,10 @@ import (
 	"github.com/pkg/errors"
 )
 
+type ImageDownloader interface {
+	DownloadByURL(ctx context.Context, url string, headers map[string][]string) (*Image, error)
+}
+
 type Downloader struct{}
 
 func NewDownloader() *Downloader {

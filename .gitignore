@@ -1,4 +1,5 @@
 .idea
 .env
+bin
 profile.cov
 profile.cov.tmp

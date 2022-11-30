@@ -3,10 +3,11 @@ package previewer
 import (
 	"context"
 	"errors"
-	"github.com/stretchr/testify/require"
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/require"
 )
 
 const ImageURL = "http://raw.githubusercontent.com/OtusGolang/final_project/master/examples/image-previewer/"

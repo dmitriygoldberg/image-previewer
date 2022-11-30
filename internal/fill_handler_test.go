@@ -2,12 +2,13 @@ package internal
 
 import (
 	"errors"
-	"github.com/dmitriygoldberg/image-previewer/pkg/previewer"
 	"net/http"
 	"net/http/httptest"
 	"strconv"
 	"strings"
 	"testing"
+
+	"github.com/dmitriygoldberg/image-previewer/pkg/previewer"
 
 	"github.com/golang/mock/gomock"
 	"github.com/gorilla/mux"

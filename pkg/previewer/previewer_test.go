@@ -3,13 +3,14 @@ package previewer
 import (
 	"context"
 	"errors"
+	"reflect"
+	"testing"
+
 	lruCache "github.com/dmitriygoldberg/image-previewer/pkg/cache"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
-	"reflect"
-	"testing"
 )
 
 func TestDefaultService_Fill_positive(t *testing.T) {
